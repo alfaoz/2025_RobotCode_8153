@@ -1,0 +1,15 @@
+{
+  "robotWidth": 0.9,
+  "robotLength": 0.9,
+  "holonomic": true,
+  "bumperWidth": 0.1,
+  "bumperLength": 0.1,
+  "wheelBase": 0.5,
+  "trackWidth": 0.5,
+  "wheelDiameter": 0.1,
+  "wheelCoefficient": 1.0,
+  "maxVelocity": 4.0,
+  "maxAcceleration": 3.0,
+  "maxAngularVelocity": 540.0,
+  "maxAngularAcceleration": 720.0
+}

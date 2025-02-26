@@ -9,32 +9,35 @@ import static edu.wpi.first.units.Units.*;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkClosedLoopController;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.AlignWithAprilTagCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.LimelightHelpers;
 
 public class RobotContainer {
+    // Auto chooser for selecting autonomous routines
+    private final SendableChooser<Command> autoChooser;
     // Maximum speeds obtained from TunerConstants
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); //(m/s)
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); //(rad/s)
     SparkMax ceyhun = new SparkMax(1, MotorType.kBrushless);
 
-    // =========== P I D =========== (FOR TURNING LMAOOOOOOOOOOOOOOOOOOOOO)
-    private static final double kP = 0.05;
-    private static final double kI = 0.0;
-    private static final double kD = 0.01;
-    private static final double TOLERANCE = 1.0; //degs
-    private final PIDController autoCenterPID = new PIDController(kP, kI, kD);
+    //====== APRIL TAG ALIGNMENT CONSTANTS ============
+    private static final double CLOSE_ENOUGH_DISTANCE = 1.0; // metres
+    private static final String LIMELIGHT_NAME = "maylimelight";
 
     /* Swerve drive request for field-centric control */ // PID AUTOCENTER MIGHT BREAK!!!!!!!!!!!!!!!!
     private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -52,13 +55,20 @@ public class RobotContainer {
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
     public RobotContainer() {
-        autoCenterPID.setTolerance(TOLERANCE);
         configureBindings();
+        
+        // Build an auto chooser with all autos in the project
+        autoChooser = AutoBuilder.buildAutoChooser();
+        SmartDashboard.putData("Auto Chooser", autoChooser);
     }
 
     private void configureBindings() {
-
-     
+        // Create the AprilTag alignment command
+        AlignWithAprilTagCommand alignWithAprilTagCommand = 
+            new AlignWithAprilTagCommand(drivetrain, LIMELIGHT_NAME, CLOSE_ENOUGH_DISTANCE, drive, joystick, MaxSpeed);
+            
+        // Add a description to the SmartDashboard
+        SmartDashboard.putString("AprilTag/Info", "Press Button 3 to align with AprilTag");
 
         drivetrain.setDefaultCommand(
             drivetrain.applyRequest(() -> {
@@ -67,17 +77,9 @@ public class RobotContainer {
                 
                 double rotationalRate = -joystick.getRightX() * MaxAngularRate;
                 
-                if (joystick.button(3).getAsBoolean()) { //might arise problems lmao TODO: change button number lol
-                    if (LimelightHelpers.getTV("maylimelight")) {
-                        double tx = LimelightHelpers.getTX("maylimelight"); // tx in degs
-                        rotationalRate = autoCenterPID.calculate(tx, 0.0);
-                    } else {
-                        autoCenterPID.reset();
-                        rotationalRate = 0.0;
-                    }
-                } else {
-                    autoCenterPID.reset();
-                }
+                // The AprilTag alignment is now handled by the AlignWithAprilTagCommand
+                // when button 3 is pressed, so we don't need to check for it here
+                
                 if(joystick.button(8).getAsBoolean()){
                 }
                 else if(joystick.button(9).getAsBoolean()){
@@ -87,12 +89,14 @@ public class RobotContainer {
 
                 }
             
-                
                 return drive.withVelocityX(velocityX)
                             .withVelocityY(velocityY)
                             .withRotationalRate(rotationalRate);
             })
         );
+        
+        // Bind the AprilTag alignment command to button 3
+        joystick.button(3).whileTrue(alignWithAprilTagCommand);
         
         joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         joystick.b().whileTrue(drivetrain.applyRequest(() ->
@@ -110,6 +114,10 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-        return Commands.print("No autonomous command configured");
+        // Return the selected auto from the chooser
+        return autoChooser.getSelected();
+        
+        // Alternatively, you can return a specific auto:
+        // return new PathPlannerAuto("Example Auto");
     }
 }

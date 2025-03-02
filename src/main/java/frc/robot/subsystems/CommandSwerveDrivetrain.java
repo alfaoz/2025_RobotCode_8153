@@ -134,6 +134,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (Utils.isSimulation()) {
             startSimThread();
         }
+        
+        // Disable Signal Logger by default to save disk space
+        SignalLogger.stop();
+        
         configureAutoBuilder();
     }
 
@@ -159,6 +163,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (Utils.isSimulation()) {
             startSimThread();
         }
+        
+        // Disable Signal Logger by default to save disk space
+        SignalLogger.stop();
+        
         configureAutoBuilder();
     }
 
@@ -192,6 +200,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (Utils.isSimulation()) {
             startSimThread();
         }
+        
+        // Disable Signal Logger by default to save disk space
+        SignalLogger.stop();
+        
         configureAutoBuilder();
     }
 
@@ -209,10 +221,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                         .withWheelForceFeedforwardsY(feedforwards.robotRelativeForcesYNewtons())
                 ),
                 new PPHolonomicDriveController(
-                    // PID constants for translation
-                    new PIDConstants(10, 0, 0),
-                    // PID constants for rotation
-                    new PIDConstants(7, 0, 0) // ben bunu begendim 7ydi
+                    // Translation PID
+                    new PIDConstants(4.5, 0, 0), // 3-5 arası good :3
+                    // Rotation PID
+                    new PIDConstants(1.8, 0, 0) // kP 1.7-2.3 arası
                 ),
                 config,
                 // Assume the path needs to be flipped for Red vs Blue, this is normally the case
@@ -242,7 +254,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      * @return Command to run
      */
     public Command sysIdQuasistatic(SysIdRoutine.Direction direction) {
-        return m_sysIdRoutineToApply.quasistatic(direction);
+        // Enable Signal Logger for SysId
+        SignalLogger.start();
+        return m_sysIdRoutineToApply.quasistatic(direction).finallyDo(() -> SignalLogger.stop());
     }
 
     /**
@@ -253,7 +267,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      * @return Command to run
      */
     public Command sysIdDynamic(SysIdRoutine.Direction direction) {
-        return m_sysIdRoutineToApply.dynamic(direction);
+        // Enable Signal Logger for SysId
+        SignalLogger.start();
+        return m_sysIdRoutineToApply.dynamic(direction).finallyDo(() -> SignalLogger.stop());
     }
 
     @Override

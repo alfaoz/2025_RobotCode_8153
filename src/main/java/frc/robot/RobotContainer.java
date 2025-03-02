@@ -10,6 +10,7 @@ import static edu.wpi.first.units.Units.*;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkClosedLoopController;
@@ -23,8 +24,11 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AlignWithAprilTagCommand;
+import frc.robot.commands.AutonRollerReverseCommand;
+import frc.robot.commands.AutonRollerSpewCommand;
 import frc.robot.commands.CommandRollerReverse;
 import frc.robot.commands.CommandRollerSpew;
+import frc.robot.commands.ToggleLimelightLightsCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.LimelightHelpers;
@@ -40,7 +44,8 @@ public class RobotContainer {
 
     //====== APRIL TAG ALIGNMENT CONSTANTS ============
     private static final double CLOSE_ENOUGH_DISTANCE = 1.0; // metres
-    private static final String LIMELIGHT_NAME = "maylimelight";
+    // Default Limelight name is "limelight" unless changed in Limelight config
+    private static final String LIMELIGHT_NAME = "limelight";
 
     /* Swerve drive request for field-centric control */ // PID AUTOCENTER MIGHT BREAK!!!!!!!!!!!!!!!!
     private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -59,7 +64,16 @@ public class RobotContainer {
 
 
     public RobotContainer() {
-        configureBindings();
+        CommandRollerSpew rollerSpew = new CommandRollerSpew(ceyhun);
+        CommandRollerReverse rollerReverse = new CommandRollerReverse(ceyhun);
+        AutonRollerReverseCommand autonRollerReverse = new AutonRollerReverseCommand(ceyhun);
+        AutonRollerSpewCommand autonRollerSpew = new AutonRollerSpewCommand(ceyhun);
+
+        NamedCommands.registerCommand("autonRollerReverse", autonRollerReverse);
+        NamedCommands.registerCommand("autonRollerSpew", autonRollerSpew);
+
+
+        configureBindings(rollerReverse, rollerSpew);
         
         // Build an auto chooser with all autos in the project
         autoChooser = AutoBuilder.buildAutoChooser();
@@ -67,20 +81,22 @@ public class RobotContainer {
 
     }
 
-    private void configureBindings() {
+    private void configureBindings(CommandRollerReverse rollerReverse, CommandRollerSpew rollerSpew) {
         // Create the AprilTag alignment command
         AlignWithAprilTagCommand alignWithAprilTagCommand = 
             new AlignWithAprilTagCommand(drivetrain, LIMELIGHT_NAME, CLOSE_ENOUGH_DISTANCE, drive, joystick, MaxSpeed);
             
-        CommandRollerSpew rollerSpew = new CommandRollerSpew(ceyhun);
-        CommandRollerReverse rollerReverse = new CommandRollerReverse(ceyhun);
+        
+        
+        // Create the Limelight lights toggle command
+        ToggleLimelightLightsCommand toggleLimelightLightsCommand = new ToggleLimelightLightsCommand(LIMELIGHT_NAME);
         // Add a description to the SmartDashboard
         SmartDashboard.putString("AprilTag/Info", "Press Button 3 to align with AprilTag");
 
         drivetrain.setDefaultCommand(
             drivetrain.applyRequest(() -> {
-                double velocityX = -0.35*Math.pow(joystick.getLeftY(),3) * MaxSpeed;
-                double velocityY = -0.35*Math.pow(joystick.getLeftX(),3) * MaxSpeed;
+                double velocityX = -0.8 *Math.pow(joystick.getLeftY(),3) * MaxSpeed;
+                double velocityY = -0.8*Math.pow(joystick.getLeftX(),3) * MaxSpeed;
                 
                 double rotationalRate = -0.1*joystick.getRightX()  * MaxAngularRate;
                 
@@ -99,6 +115,10 @@ public class RobotContainer {
         joystick.button(5).whileTrue(alignWithAprilTagCommand);
         joystick.button(3).whileTrue(rollerSpew);
         joystick.button(4).whileTrue(rollerReverse);
+        
+        // Bind the Limelight lights command to the left trigger with a very low threshold (5%)
+        // Using whileTrue() to keep lights on while trigger is held (like a car flasher)
+        joystick.leftTrigger(0.8).whileTrue(toggleLimelightLightsCommand);
         
         joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         joystick.b().whileTrue(drivetrain.applyRequest(() ->

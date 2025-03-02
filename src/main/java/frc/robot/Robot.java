@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -13,8 +14,22 @@ public class Robot extends TimedRobot {
 
   private final RobotContainer m_robotContainer;
 
+  // Limelight name constant
+  private static final String LIMELIGHT_NAME = "limelight";
+
   public Robot() {
     m_robotContainer = new RobotContainer();
+    
+    // Initialize Limelight to a known state (lights off)
+    LimelightHelpers.setLEDMode_ForceOff(LIMELIGHT_NAME);
+    SmartDashboard.putBoolean("Limelight/LightsOn", false);
+  }
+
+  @Override
+  public void robotInit() {
+    // Make sure Limelight lights are off when robot starts
+    LimelightHelpers.setLEDMode_ForceOff(LIMELIGHT_NAME);
+    SmartDashboard.putBoolean("Limelight/LightsOn", false);
   }
 
   @Override

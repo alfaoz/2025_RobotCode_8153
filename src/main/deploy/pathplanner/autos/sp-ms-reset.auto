@@ -7,13 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "test"
+            "pathName": "sp-ms reset"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "tests",
+  "folder": "resets",
   "choreoAuto": false
 }

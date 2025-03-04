@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class AutonRollerSpewCommand extends Command {
   private final SparkMax m_motor;
   private final Timer m_timer = new Timer();
-  private static final double DURATION_SECONDS = 1.1;
+  private static final double DURATION_SECONDS = 0.4;
 
   public AutonRollerSpewCommand(SparkMax motor) {
     m_motor = motor;
@@ -26,7 +26,7 @@ public class AutonRollerSpewCommand extends Command {
   public void initialize() {
     m_timer.reset();
     m_timer.start();
-    m_motor.set(-0.35); // Same speed as CommandRollerSpew
+    m_motor.set(-0.30); // Same speed as CommandRollerSpew
   }
 
   @Override

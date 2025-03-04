@@ -1,0 +1,116 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 8.005263157894737,
+        "y": 4.054
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 7.023848684210526,
+        "y": 3.7364835526315785
+      },
+      "isLocked": false,
+      "linkedName": "S ms"
+    },
+    {
+      "anchor": {
+        "x": 6.090542763157895,
+        "y": 3.370723684210526
+      },
+      "prevControl": {
+        "x": 6.494654605263159,
+        "y": 3.5631578947368414
+      },
+      "nextControl": {
+        "x": 5.677564523665269,
+        "y": 3.1740673796902286
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 4.041118421052631,
+        "y": 2.244983552631579
+      },
+      "prevControl": {
+        "x": 4.366107716365262,
+        "y": 2.432578999519358
+      },
+      "nextControl": {
+        "x": 2.857648026315789,
+        "y": 1.5618421052631581
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.0776315789473683,
+        "y": 1.0518914473684209
+      },
+      "prevControl": {
+        "x": 1.9916940789473683,
+        "y": 1.4752467105263156
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "C rsn"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 119.99999999999999
+    },
+    {
+      "waypointRelativePos": 1.7877358490566055,
+      "rotationDegrees": 119.99999999999999
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 1.163375224416517,
+      "constraints": {
+        "maxVelocity": 5.0,
+        "maxAcceleration": 4.0,
+        "maxAngularVelocity": 100.0,
+        "maxAngularAcceleration": 250.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "autonRollerSpew",
+      "waypointRelativePos": 1.4003590664272887,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 4.0,
+    "maxAngularVelocity": 100.0,
+    "maxAngularAcceleration": 250.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 53.3929251873925
+  },
+  "reversed": false,
+  "folder": "ms",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "useDefaultConstraints": false
+}

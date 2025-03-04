@@ -1,0 +1,73 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "os-fp"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "autonRollerSpew"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "fp-rsn"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "autonRollerReverse"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "rsn-fp"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "autonRollerSpew"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "fp-rsn"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "autonRollerReverse"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "rsn-sp"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "autonRollerSpew"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "auton os",
+  "choreoAuto": false
+}

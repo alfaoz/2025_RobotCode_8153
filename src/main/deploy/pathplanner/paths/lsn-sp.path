@@ -1,0 +1,68 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.0968749999999998,
+        "y": 6.998108552631579
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 3.4734390340585914,
+        "y": 6.4785432011578035
+      },
+      "isLocked": false,
+      "linkedName": "C lsn"
+    },
+    {
+      "anchor": {
+        "x": 3.2136513157894733,
+        "y": 3.967269736842105
+      },
+      "prevControl": {
+        "x": 2.001315411891712,
+        "y": 4.015368773465356
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "R sp"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [
+    {
+      "name": "sonunda",
+      "minWaypointRelativePos": 0.7055655296229796,
+      "maxWaypointRelativePos": 1.0,
+      "constraints": {
+        "maxVelocity": 1.0,
+        "maxAcceleration": 2.1,
+        "maxAngularVelocity": 300.0,
+        "maxAngularAcceleration": 300.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 5.0,
+    "maxAcceleration": 6.0,
+    "maxAngularVelocity": 300.0,
+    "maxAngularAcceleration": 300.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": "lsn",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -55.22216863363619
+  },
+  "useDefaultConstraints": false
+}

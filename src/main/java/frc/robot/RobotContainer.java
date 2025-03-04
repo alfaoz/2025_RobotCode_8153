@@ -95,7 +95,7 @@ public class RobotContainer {
 
         drivetrain.setDefaultCommand(
             drivetrain.applyRequest(() -> {
-                double velocityX = -0.8 *Math.pow(joystick.getLeftY(),3) * MaxSpeed;
+                double velocityX = -0.8*Math.pow(joystick.getLeftY(),3) * MaxSpeed;
                 double velocityY = -0.8*Math.pow(joystick.getLeftX(),3) * MaxSpeed;
                 
                 double rotationalRate = -0.1*joystick.getRightX()  * MaxAngularRate;
@@ -112,7 +112,7 @@ public class RobotContainer {
         );
         
         // Bind the AprilTag alignment command to button 5
-        joystick.button(5).whileTrue(alignWithAprilTagCommand);
+        joystick.button(6).whileTrue(alignWithAprilTagCommand);
         joystick.button(3).whileTrue(rollerSpew);
         joystick.button(4).whileTrue(rollerReverse);
         
@@ -139,7 +139,5 @@ public class RobotContainer {
         // Return the selected auto from the chooser
         return autoChooser.getSelected();
         
-        // Alternatively, you can return a specific auto:
-        // return new PathPlannerAuto("Example Auto");
     }
 }

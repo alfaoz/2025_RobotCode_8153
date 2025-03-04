@@ -1,0 +1,55 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ms-fp TEST"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 3.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "fp-rsn"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "autonRollerReverse"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "rsn-fp"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 3.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "fp-ms reset"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "tests",
+  "choreoAuto": false
+}

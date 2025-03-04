@@ -222,14 +222,20 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                 ),
                 new PPHolonomicDriveController(
                     // Translation PID
-                    new PIDConstants(4.5, 0, 0), // 3-5 arası good :3
+                    new PIDConstants(4.5, 0, 0), // 3-5 arası good :3 (4.5)
                     // Rotation PID
-                    new PIDConstants(1.8, 0, 0) // kP 1.7-2.3 arası
+                    new PIDConstants(1.9, 0, 0) // kP 1.7-2.3 arası
                 ),
                 config,
-                // Assume the path needs to be flipped for Red vs Blue, this is normally the case
-                () -> DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Red,
-                this // Subsystem for requirements
+                
+                () ->{
+                    var alliance = DriverStation.getAlliance();
+                      if (alliance.isPresent()) {
+                        return alliance.get() == DriverStation.Alliance.Red;
+              } 
+              return false;
+            },
+            this // Reference to this subsystem to set requirements
             );
         } catch (Exception ex) {
             DriverStation.reportError("Failed to load PathPlanner config and configure AutoBuilder", ex.getStackTrace());

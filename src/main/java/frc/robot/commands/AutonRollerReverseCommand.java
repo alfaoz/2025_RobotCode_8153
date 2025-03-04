@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class AutonRollerReverseCommand extends Command {
   private final SparkMax m_motor;
   private final Timer m_timer = new Timer();
-  private static final double DURATION_SECONDS = 1.1;
+  private static final double DURATION_SECONDS = 0.8;
 
   public AutonRollerReverseCommand(SparkMax motor) {
     m_motor = motor;

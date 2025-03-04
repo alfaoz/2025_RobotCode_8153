@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.util.Color8Bit;
 
 public class Telemetry {
     private final double MaxSpeed;
+    
 
     /**
      * Construct a telemetry object, with the specified max speed of the robot
@@ -38,6 +39,7 @@ public class Telemetry {
 
     /* Robot swerve drive state */
     private final NetworkTable driveStateTable = inst.getTable("DriveState");
+    private final NetworkTable driveStats = inst.getTable("Drive");
     private final StructPublisher<Pose2d> drivePose = driveStateTable.getStructTopic("Pose", Pose2d.struct).publish();
     private final StructPublisher<ChassisSpeeds> driveSpeeds = driveStateTable.getStructTopic("Speeds", ChassisSpeeds.struct).publish();
     private final StructArrayPublisher<SwerveModuleState> driveModuleStates = driveStateTable.getStructArrayTopic("ModuleStates", SwerveModuleState.struct).publish();
@@ -45,6 +47,11 @@ public class Telemetry {
     private final StructArrayPublisher<SwerveModulePosition> driveModulePositions = driveStateTable.getStructArrayTopic("ModulePositions", SwerveModulePosition.struct).publish();
     private final DoublePublisher driveTimestamp = driveStateTable.getDoubleTopic("Timestamp").publish();
     private final DoublePublisher driveOdometryFrequency = driveStateTable.getDoubleTopic("OdometryFrequency").publish();
+
+    StructArrayPublisher<SwerveModuleState> states = driveStats.getStructArrayTopic("SwerveModuleStates", SwerveModuleState.struct).publish();
+    private final StructPublisher<Pose2d> pose = driveStats.getStructTopic("Pose", Pose2d.struct).publish();
+
+
 
     /* Robot pose for field positioning */
     private final NetworkTable table = inst.getTable("Pose");

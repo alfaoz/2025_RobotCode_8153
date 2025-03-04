@@ -47,6 +47,10 @@ public class Telemetry {
     private final StructArrayPublisher<SwerveModulePosition> driveModulePositions = driveStateTable.getStructArrayTopic("ModulePositions", SwerveModulePosition.struct).publish();
     private final DoublePublisher driveTimestamp = driveStateTable.getDoubleTopic("Timestamp").publish();
     private final DoublePublisher driveOdometryFrequency = driveStateTable.getDoubleTopic("OdometryFrequency").publish();
+      StructArrayPublisher<SwerveModuleState> states =
+      driveStats.getStructArrayTopic("SwerveModuleStates", SwerveModuleState.struct).publish();
+    private final StructPublisher<Pose2d> pose =
+      driveStats.getStructTopic("Pose", Pose2d.struct).publish();
 
     StructArrayPublisher<SwerveModuleState> states = driveStats.getStructArrayTopic("SwerveModuleStates", SwerveModuleState.struct).publish();
     private final StructPublisher<Pose2d> pose = driveStats.getStructTopic("Pose", Pose2d.struct).publish();

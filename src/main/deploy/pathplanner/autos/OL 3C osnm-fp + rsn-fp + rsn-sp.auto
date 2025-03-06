@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "os-fp"
+            "pathName": "osnm-fp"
           }
         },
         {
@@ -68,6 +68,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "auton os",
+  "folder": null,
   "choreoAuto": false
 }

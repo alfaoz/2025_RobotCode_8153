@@ -7,19 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ms-otfp-rsn"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "autonRollerReverse"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "rsn-fp"
+            "pathName": "osfm-fp"
           }
         },
         {

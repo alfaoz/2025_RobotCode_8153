@@ -16,19 +16,24 @@
     },
     {
       "anchor": {
-        "x": 3.2136513157894733,
-        "y": 3.967269736842105
+        "x": 3.223273026315789,
+        "y": 4.034621710526316
       },
       "prevControl": {
-        "x": 2.001315411891712,
-        "y": 4.015368773465356
+        "x": 2.0109371224180275,
+        "y": 4.082720747149567
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "R sp"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": -55.222
+    }
+  ],
   "constraintZones": [
     {
       "name": "sonunda",
@@ -59,10 +64,10 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "lsn",
+  "folder": "C lsn",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -55.22216863363619
+    "rotation": -55.222
   },
   "useDefaultConstraints": false
 }

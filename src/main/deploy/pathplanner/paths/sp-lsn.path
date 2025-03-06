@@ -3,45 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.0776315789473683,
-        "y": 1.0518914473684209
+        "x": 3.223273026315789,
+        "y": 4.034621710526316
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0776315789473685,
-        "y": 1.0518914473684209
+        "x": 2.3958059210526317,
+        "y": 5.5356085526315795
       },
       "isLocked": false,
-      "linkedName": "C rsn"
+      "linkedName": "R sp"
     },
     {
       "anchor": {
-        "x": 5.137993421052631,
-        "y": 2.880016447368421
+        "x": 1.0968749999999998,
+        "y": 6.998108552631579
       },
       "prevControl": {
-        "x": 4.618421052631579,
-        "y": 2.398930921052631
+        "x": 2.809539473684217,
+        "y": 5.901233552632179
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "C lsn"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.4842767295597556,
-      "rotationDegrees": 119.99999999999999
+      "waypointRelativePos": 0.5581761006289315,
+      "rotationDegrees": 0.0
     }
   ],
   "constraintZones": [
     {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.793536804308798,
+      "name": "sonunda",
+      "minWaypointRelativePos": 0.9210053859964092,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 1.0,
-        "maxAcceleration": 2.0,
+        "maxAcceleration": 2.1,
         "maxAngularVelocity": 300.0,
         "maxAngularAcceleration": 300.0,
         "nominalVoltage": 12.0,
@@ -52,22 +52,22 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 4.0,
-    "maxAngularVelocity": 300.0,
-    "maxAngularAcceleration": 300.0,
+    "maxVelocity": 5.0,
+    "maxAcceleration": 6.0,
+    "maxAngularVelocity": 90.0,
+    "maxAngularAcceleration": 200.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": -55.222
   },
   "reversed": false,
-  "folder": "C rsn",
+  "folder": "C lsn",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 53.3929251873925
+    "rotation": 0.0
   },
   "useDefaultConstraints": false
 }

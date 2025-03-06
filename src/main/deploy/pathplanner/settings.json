@@ -3,12 +3,12 @@
   "robotLength": 0.85,
   "holonomicMode": true,
   "pathFolders": [
-    "New Folder",
-    "lsn",
-    "ms",
-    "os",
+    "C lsn",
+    "C rsn",
+    "S as",
+    "S ms",
+    "S os",
     "reset",
-    "rsn",
     "testin"
   ],
   "autoFolders": [

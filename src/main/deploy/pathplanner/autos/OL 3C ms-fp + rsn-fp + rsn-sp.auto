@@ -68,6 +68,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "auton ms",
+  "folder": null,
   "choreoAuto": false
 }

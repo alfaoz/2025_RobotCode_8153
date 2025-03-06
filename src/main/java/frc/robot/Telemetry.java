@@ -7,6 +7,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.networktables.BooleanPublisher;
 import edu.wpi.first.networktables.DoubleArrayPublisher;
 import edu.wpi.first.networktables.DoublePublisher;
 import edu.wpi.first.networktables.NetworkTable;
@@ -14,6 +15,8 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.StringPublisher;
 import edu.wpi.first.networktables.StructArrayPublisher;
 import edu.wpi.first.networktables.StructPublisher;
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
 import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -57,6 +60,15 @@ public class Telemetry {
     private final NetworkTable table = inst.getTable("Pose");
     private final DoubleArrayPublisher fieldPub = table.getDoubleArrayTopic("robotPose").publish();
     private final StringPublisher fieldTypePub = table.getStringTopic(".type").publish();
+    
+    /* Limelight data */
+    private final NetworkTable limelightTable = inst.getTable("Limelight");
+    private final BooleanPublisher limelightValidPosePub = limelightTable.getBooleanTopic("ValidPose").publish();
+    private final DoublePublisher limelightPoseXPub = limelightTable.getDoubleTopic("PoseX").publish();
+    private final DoublePublisher limelightPoseYPub = limelightTable.getDoubleTopic("PoseY").publish();
+    private final DoublePublisher limelightPoseRotPub = limelightTable.getDoubleTopic("PoseRot").publish();
+    private final DoublePublisher limelightTagCountPub = limelightTable.getDoubleTopic("TagCount").publish();
+    
 
     /* Mechanisms to represent the swerve module states */
     private final Mechanism2d[] m_moduleMechanisms = new Mechanism2d[] {
@@ -119,6 +131,7 @@ public class Telemetry {
         fieldTypePub.set("Field2d");
         fieldPub.set(m_poseArray);
 
+
         /* Telemeterize the module states to a Mechanism2d */
         for (int i = 0; i < 4; ++i) {
             m_moduleSpeeds[i].setAngle(state.ModuleStates[i].angle);
@@ -127,5 +140,25 @@ public class Telemetry {
 
             SmartDashboard.putData("Module " + i, m_moduleMechanisms[i]);
         }
+        
     }
+    
+    /**
+     * Update the Limelight pose data in the telemetry.
+     * 
+     * @param validPose Whether the pose is valid
+     * @param pose The pose from the Limelight
+     * @param tagCount The number of tags detected
+     */
+    public void updateLimelightPose(boolean validPose, Pose2d pose, int tagCount) {
+        limelightValidPosePub.set(validPose);
+        
+        if (validPose && pose != null) {
+            limelightPoseXPub.set(pose.getX());
+            limelightPoseYPub.set(pose.getY());
+            limelightPoseRotPub.set(pose.getRotation().getDegrees());
+            limelightTagCountPub.set(tagCount);
+        }
+    }
+    
 }

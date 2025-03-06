@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 3.2136513157894733,
-        "y": 3.967269736842105
+        "x": 3.223273026315789,
+        "y": 4.034621710526316
       },
       "prevControl": {
-        "x": 2.001315789473684,
-        "y": 3.9191611842105263
+        "x": 2.0109375,
+        "y": 3.986513157894737
       },
       "nextControl": null,
       "isLocked": false,
@@ -59,7 +59,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "rsn",
+  "folder": "C rsn",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 53.3929251873925

@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 3.8294407894736837,
-        "y": 5.131496710526315
+        "y": 5.1
       },
       "prevControl": null,
       "nextControl": {
         "x": 3.040460526315789,
-        "y": 5.7953947368421055
+        "y": 5.76389802631579
       },
       "isLocked": false,
       "linkedName": "R tp"
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -55.22216863363619
+    "rotation": -55.222
   },
   "reversed": false,
-  "folder": "lsn",
+  "folder": "C lsn",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -59.99999999999999

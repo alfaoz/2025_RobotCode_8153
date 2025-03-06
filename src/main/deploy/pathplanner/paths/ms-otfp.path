@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.456048243414275,
-        "y": 4.054
+        "x": 7.062335526315788,
+        "y": 3.2552631578947366
       },
       "isLocked": false,
       "linkedName": "S ms"
     },
     {
       "anchor": {
-        "x": 5.801891447368421,
-        "y": 4.044243421052631
+        "x": 5.128371710526316,
+        "y": 2.9088815789473688
       },
       "prevControl": {
-        "x": 6.920040193364309,
-        "y": 4.044243421052631
+        "x": 6.302220394736842,
+        "y": 2.9762335526315784
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "R bp"
+      "linkedName": "R otfp"
     }
   ],
   "rotationTargets": [],
@@ -33,16 +33,16 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.1,
-    "maxAcceleration": 2.1,
+    "maxVelocity": 3.0,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 300.0,
     "maxAngularAcceleration": 300.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.0,
-    "rotation": 180.0
+    "velocity": 0,
+    "rotation": 119.99999999999999
   },
   "reversed": false,
   "folder": "S ms",
@@ -50,5 +50,5 @@
     "velocity": 0,
     "rotation": 180.0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

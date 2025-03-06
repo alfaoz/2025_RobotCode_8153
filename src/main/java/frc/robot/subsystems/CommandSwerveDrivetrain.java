@@ -224,7 +224,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                     // Translation PID
                     new PIDConstants(4.5, 0, 0), // 3-5 arası good :3 (4.5)
                     // Rotation PID
-                    new PIDConstants(1.9, 0, 0) // kP 1.7-2.3 arası
+                    new PIDConstants(1.8, 0, 0) // kP 1.7-2.3 arası
                 ),
                 config,
                 

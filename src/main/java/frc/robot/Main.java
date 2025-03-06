@@ -4,12 +4,32 @@
 
 package frc.robot;
 
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
+import com.pathplanner.lib.util.FileVersionException;
+
 import edu.wpi.first.wpilibj.RobotBase;
 
 public final class Main {
   private Main() {}
 
   public static void main(String... args) {
-    RobotBase.startRobot(Robot::new);
+    RobotBase.startRobot(() -> {
+      try {
+        return new Robot();
+      } catch (FileVersionException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } catch (ParseException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+            return null;
+    });
   }
 }

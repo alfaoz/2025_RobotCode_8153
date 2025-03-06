@@ -4,6 +4,12 @@
 
 package frc.robot;
 
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
+import com.pathplanner.lib.util.FileVersionException;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -17,7 +23,7 @@ public class Robot extends TimedRobot {
   // Limelight name constant
   private static final String LIMELIGHT_NAME = "limelight";
 
-  public Robot() {
+  public Robot() throws FileVersionException, IOException, ParseException {
     m_robotContainer = new RobotContainer();
     
     // Initialize Limelight to a known state (lights off)

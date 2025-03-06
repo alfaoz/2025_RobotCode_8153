@@ -24,8 +24,8 @@
         "y": 2.899259868421052
       },
       "nextControl": {
-        "x": 5.336261446000045,
-        "y": 2.511438098022829
+        "x": 5.33626144600004,
+        "y": 2.511438098022827
       },
       "isLocked": false,
       "linkedName": null
@@ -75,7 +75,7 @@
     "rotation": 59.99999999999999
   },
   "reversed": false,
-  "folder": "ms",
+  "folder": "S ms",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

@@ -8,7 +8,7 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.7282224822364192,
+        "x": 1.7282224822364194,
         "y": 6.605251651387477
       },
       "isLocked": false,
@@ -17,11 +17,11 @@
     {
       "anchor": {
         "x": 3.8294407894736837,
-        "y": 5.131496710526315
+        "y": 5.1
       },
       "prevControl": {
         "x": 3.2617598684210525,
-        "y": 5.968585526315789
+        "y": 5.9370888157894735
       },
       "nextControl": null,
       "isLocked": false,
@@ -59,10 +59,10 @@
     "rotation": -59.99999999999999
   },
   "reversed": false,
-  "folder": "lsn",
+  "folder": "C lsn",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -55.22216863363619
+    "rotation": -55.222
   },
   "useDefaultConstraints": false
 }

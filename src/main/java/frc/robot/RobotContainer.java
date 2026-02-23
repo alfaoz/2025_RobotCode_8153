@@ -110,6 +110,13 @@ public class RobotContainer {
 
         joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
+        // Shooter activation: right bumper runs the shooter motor while held
+        joystick.rightBumper().whileTrue(Commands.startEnd(
+            () -> ceyhun.set(1.0),
+            () -> ceyhun.set(0.0)
+        ));
+        SmartDashboard.putString("Shooter/Info", "Press Right Bumper to activate shooter");
+
         drivetrain.registerTelemetry(logger::telemeterize);
     }
 
